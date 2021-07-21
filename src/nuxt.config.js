@@ -23,8 +23,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-  ],
+  css: ["@/assets/styles/index.scss"],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
@@ -45,19 +44,22 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    // https://github.com/nuxt-community/style-resources-module#readme
+    "@nuxtjs/style-resources",
     // https://go.nuxtjs.dev/axios
     "@nuxtjs/axios",
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL: "https://dog.ceo/api", // Base Axios URL
+    baseURL: "https://dog.ceo/api/breeds/", // Base Axios URL
+    credentials: false,
+    progress: true,
   },
 
   // Server configuration: https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-server
   server: {
     port: 8000, // default: 3000
-    host: "0.0.0.0", // default: localhost
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
