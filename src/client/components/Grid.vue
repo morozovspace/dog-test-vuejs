@@ -1,8 +1,13 @@
 <template> 
   <div>
     <div class="grid grid-cols-4 gap-4 grid__wrapper">
+      <template v-if="list.length" >
       <div v-for="(item, index) of list" :key="index" class="flex items-center justify-center text-white text-2xl font-extrabold">
-        <slot :imageSource="item">{{item}}</slot>
+        <slot :item="item">{{item}}</slot>
+      </div>
+      </template>
+      <div v-else>
+        {{ emptyMessage }}
       </div>
     </div>
     <footer>
@@ -64,6 +69,10 @@ export default {
       type: Boolean,
       default: true,
     },
+    emptyMessage: {
+      type: String,
+      default: ""
+    }
   },
   data() {
       return {
@@ -89,7 +98,6 @@ export default {
       this.showLoader = true
       const promises = await this.fetch(this.limit, this.current, this.pageOffset)
       const result = await Promise.all(promises)
-      console.log("PROMISES", promises, result)
       this.list.push(...result)
       this.current += 1
       this.showLoader = false

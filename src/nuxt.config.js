@@ -54,7 +54,7 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL: "https://dog.ceo/api/breeds/", // Base Axios URL
+    baseURL: "https://dog.ceo/api/", // Base Axios URL
     credentials: false,
     progress: true,
   },

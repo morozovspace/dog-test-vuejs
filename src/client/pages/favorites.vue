@@ -1,18 +1,13 @@
 <template>
-<div>
-    <Grid
-      v-if="favorites.length"
-      :fetch="fetch"
-      :intersectionObserver="false"
-      class="px-8 py-8"
-      v-slot="{ imageSource }"
-    >
-     <DogeCard :click="click" :favorites="favorites" :source="imageSource" />
-    </Grid>
-    <div v-else class="m-4">
-      Select favorite
-    </div>
-</div>
+<Grid
+  :fetch="fetch"
+  :intersectionObserver="false"
+  class="px-8 py-8"
+  v-slot="{ item }"
+  :empty-message="'Select favorite'"
+>
+ <DogeCard :click="click" :favorites="favorites" :source="item" />
+</Grid>
 </template>
 <script>
 import Grid from "@/components/Grid.vue"

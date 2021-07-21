@@ -1,6 +1,6 @@
 <template>
-  <Grid :fetch="fetch" v-slot="{ imageSource }" class="px-8 py-8">
-    <DogeCard :click="click" :favorites="favorites" :source="imageSource" />
+  <Grid :fetch="fetch" v-slot="{ item }" class="px-8 py-8">
+    <DogeCard :click="click" :favorites="favorites" :source="item" />
   </Grid>
 </template>
 <script>
@@ -43,7 +43,7 @@ export default {
           resolve("https://images.dog.ceo/breeds/rottweiler/n02106550_7473.jpg")
         }, 1000))
         */
-        const { message } = await this.$axios.$get("/image/random")
+        const { message } = await this.$axios.$get("/breeds/image/random")
         return Promise.resolve(message)
       } catch (e) {
         return Promise.resolve(null)
