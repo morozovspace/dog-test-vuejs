@@ -1,4 +1,4 @@
-<template>
+<template> 
   <div>
     <div class="grid grid-cols-4 gap-4 grid__wrapper">
       <div v-for="(item, index) of list" :key="index" class="flex items-center justify-center text-white text-2xl font-extrabold">
@@ -60,6 +60,10 @@ export default {
       type: Number,
       default: 20,
     },
+    intersectionObserver: {
+      type: Boolean,
+      default: true,
+    },
   },
   data() {
       return {
@@ -74,13 +78,18 @@ export default {
     }
   },
   mounted() {
-    this.scrollTrigger()
+    if(this.intersectionObserver) {
+      this.scrollTrigger()
+    } else {
+      this.loading()
+    }
   },
   methods: {
     async loading() {
       this.showLoader = true
       const promises = await this.fetch(this.limit, this.current, this.pageOffset)
       const result = await Promise.all(promises)
+      console.log("PROMISES", promises, result)
       this.list.push(...result)
       this.current += 1
       this.showLoader = false
@@ -88,7 +97,6 @@ export default {
     scrollTrigger() {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
-          console.log(entry)
           if(entry.intersectionRatio > 0) {
             this.loading()
           }

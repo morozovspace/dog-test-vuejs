@@ -1,11 +1,12 @@
 <template>
   <Grid :fetch="fetch" v-slot="{ imageSource }" class="px-8 py-8">
-    <DogeCard :source="imageSource" />
+    <DogeCard :click="click" :favorites="favorites" :source="imageSource" />
   </Grid>
 </template>
 <script>
 import Grid from "@/components/Grid.vue"
 import DogeCard from "@/components/DogeCard.vue"
+import { mapState, mapMutations } from "vuex"
 export default {
   components: { Grid, DogeCard },
   data() {
@@ -14,7 +15,27 @@ export default {
       error: 0,
     }
   },
+  mounted() {
+    this.init()
+  },
+  computed: {
+    ...mapState({
+      favorites: "favorites",
+    }),
+  },
   methods: {
+    ...mapMutations({
+      init: "initFavorites",
+      add: "addFavorite",
+      remove: "removeFavorite",
+    }),
+    click(isFavorite, favoriteIndex, source) {
+      if (isFavorite) {
+        this.remove(favoriteIndex)
+      } else {
+        this.add(source)
+      }
+    },
     async getRandom() {
       try {
         /*
