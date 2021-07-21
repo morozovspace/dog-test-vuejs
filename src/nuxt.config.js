@@ -10,7 +10,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "test-project",
+    title: "Breeds by dog.ceo",
     htmlAttrs: {
       lang: "en"
     },
@@ -48,6 +48,8 @@ export default {
     "@nuxtjs/style-resources",
     // https://go.nuxtjs.dev/axios
     "@nuxtjs/axios",
+    // https://www.npmjs.com/package/@nuxtjs/svg-sprite
+    "@nuxtjs/svg-sprite",
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
